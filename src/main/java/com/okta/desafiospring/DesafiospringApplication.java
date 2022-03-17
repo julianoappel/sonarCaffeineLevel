@@ -9,9 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 @SpringBootApplication
 public class DesafiospringApplication {
@@ -24,7 +24,7 @@ public class DesafiospringApplication {
     @CrossOrigin("http://localhost:8081")
     class CaffeineLevelRestController {
 
-        private Random random = new Random();
+        private SecureRandom random = new SecureRandom();
 
         String getCaffeineLevel() {
             List<String> givenList = Arrays.asList(
