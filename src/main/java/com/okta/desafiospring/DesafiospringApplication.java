@@ -6,9 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Arrays;
@@ -23,8 +21,10 @@ public class DesafiospringApplication {
     }
 
     @RestController
-    @CrossOrigin
+    @CrossOrigin("http://localhost:8081")
     class CaffeineLevelRestController {
+
+        private Random random = new Random();
 
         String getCaffeineLevel() {
             List<String> givenList = Arrays.asList(
@@ -36,9 +36,7 @@ public class DesafiospringApplication {
                     "Eyeballs are rolling around in my head and I'm shouting at my coworker about JHipster.",
                     "The LD50 of caffeine is 100 cups. Your developer has had 99 and is talking to the bike rack outside while jogging in place."
             );
-            Random rand = new Random();
-            String caffeineLevelString = givenList.get(rand.nextInt(givenList.size()));
-            return caffeineLevelString;
+            return givenList.get(this.random.nextInt(givenList.size()));
         }
 
         @GetMapping("/howcaffeinatedami")
